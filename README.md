@@ -1,8 +1,29 @@
 # Teamzones
 
-Given a time, print the time in different timezones.
+Given a set of time zones and a time, print the time in different timezones.
 
-## Set up
+## Usage
+
+```shell
+tz at [CSV of time zones] [time to get]
+```
+
+Example
+
+```shell
+❯ tz at 'Australia/Melbourne,Australia/Brisbane' 3pm
+04:00PM AEDT / 03:00PM AEST
+```
+
+To find the list of valid time zones, run the command
+
+```shell
+tz list-countries
+```
+
+## Development
+
+### Set up
 
 To install dependencies, do
 
@@ -10,16 +31,16 @@ To install dependencies, do
 poetry install --no-root
 ```
 
-## Dev loop
+### Dev loop
 
 ```shell
 poetry sync
 python teamzones
 ```
 
-## Install loop
+### Install loop
 
 ```shell
 poetry install
-tz foo
+tz --help
 ```
