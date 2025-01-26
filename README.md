@@ -5,20 +5,20 @@ Given a set of time zones and a time, print the time in different timezones.
 ## Usage
 
 ```shell
-tz at [CSV of time zones] [time to get]
+tz at [--time-format=...] [--separator=...] <CSV of time zones> [time to get]
 ```
 
 Example
 
 ```shell
 ❯ tz at 'Australia/Melbourne,Australia/Brisbane' 3pm
-04:00PM AEDT / 03:00PM AEST
+4pm AEDT / 3pm AEST
 ```
 
 To find the list of valid time zones, run the command
 
 ```shell
-tz list-countries
+tz list-timezones
 ```
 
 ## Development

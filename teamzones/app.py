@@ -25,6 +25,9 @@ def at(
     ] = None,
     separator: Annotated[str, typer.Option(help="Output separator")] = " / ",
 ):
+    """
+    Given a set of timezones and a time, provide local times at the given timezones
+    """
     zone_infos = timezones_csv_to_zone_info_list(timezones)
     given_time = time_input_to_datetime(time)
     zoned_times = list(map((lambda zi: given_time.astimezone(zi)), zone_infos))
@@ -33,7 +36,10 @@ def at(
 
 
 @app.command()
-def list_countries():
+def list_timezones():
+    """
+    List available timezones
+    """
     timezones = sorted(available_timezones())
     for timezone in timezones:
         print(timezone)
