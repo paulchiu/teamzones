@@ -1,27 +1,35 @@
 import typer
-from zoneinfo import ZoneInfo, available_timezones
-from dateutil import parser
-from datetime import datetime
+from zoneinfo import available_timezones
 from typing import Optional
 from typing_extensions import Annotated
+from teamzones.time_format import format_time
+from teamzones.inputs import *
 
-app = typer.Typer()
+app = typer.Typer(no_args_is_help=True)
 
 
 @app.command()
-def at(timezones: str, time: Annotated[Optional[str], typer.Argument()] = None):
-    # Convert timezones to ZoneInfo
-    timezones_list = timezones.split(",")
-    zone_infos = list(map((lambda tz: ZoneInfo(tz)), timezones_list))
-
-    # Get user input time
-    given_time = datetime.now() if time == None else parser.parse(time)
-
-    # Get output timezones
+def at(
+    timezones: Annotated[
+        str,
+        typer.Argument(
+            help="CSV separated list of time zones to present times for; use list-countries to get supported values"
+        ),
+    ],
+    time: Annotated[
+        Optional[str], typer.Argument(help="Any input accepted by dateutil.parser")
+    ] = None,
+    time_format: Annotated[
+        str,
+        typer.Option(help="Format string accepted by datetime.strftime"),
+    ] = None,
+    separator: Annotated[str, typer.Option(help="Output separator")] = " / ",
+):
+    zone_infos = timezones_csv_to_zone_info_list(timezones)
+    given_time = time_input_to_datetime(time)
     zoned_times = list(map((lambda zi: given_time.astimezone(zi)), zone_infos))
-    time_format = "%I:%M%p %Z"
-    formatted_times = list(map((lambda t: t.strftime(time_format)), zoned_times))
-    typer.echo(" / ".join(formatted_times))
+    formatted_times = list(map((lambda t: format_time(t, time_format)), zoned_times))
+    typer.echo(separator.join(formatted_times))
 
 
 @app.command()
