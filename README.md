@@ -2,8 +2,6 @@
 
 Given a set of time zones and a time, print the time in different timezones.
 
-For detailed usage examples, see [examples.md](docs/examples.md).
-
 ## Quick Start
 
 ```shell
@@ -22,6 +20,8 @@ To find the list of valid time zones, run the command
 ```shell
 tz list-timezones
 ```
+
+For more detailed usage examples, please see [examples.md](docs/examples.md).
 
 ## Development
 
