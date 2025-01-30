@@ -2,7 +2,9 @@
 
 Given a set of time zones and a time, print the time in different timezones.
 
-## Usage
+For detailed usage examples, see [examples.md](docs/examples.md).
+
+## Quick Start
 
 ```shell
 tz at [--time-format=...] [--separator=...] <CSV of time zones> [time to get]
