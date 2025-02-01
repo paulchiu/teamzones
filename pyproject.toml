@@ -1,6 +1,6 @@
 [project]
 name = "teamzones"
-version = "1.0.0"
+version = "1.0.1"
 description = ""
 authors = [{ name = "Paul Chiu", email = "paulchiu@gmail.com" }]
 license = { text = "MIT" }
